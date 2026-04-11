@@ -243,12 +243,13 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" unique_id=2016837381]
-position = Vector2(33, 43)
+position = Vector2(86, 70)
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364601227]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1012192069]
+position = Vector2(-54, 26)
 sprite_frames = SubResource("SpriteFrames_a8ls1")
-animation = &"right_walk"
-frame_progress = 0.78309673
+animation = &"back_walk"
+frame_progress = 0.7688471
