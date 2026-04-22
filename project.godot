@@ -11,14 +11,12 @@ config_version=5
 [application]
 
 config/name="CUCEI Adventure"
-run/main_scene="uid://c2lhmf82sxa0u"
+run/main_scene="uid://d1sawptffblhk"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://arte/icon.svg"
 
 [display]
 
-window/size/viewport_width=1980
-window/size/viewport_height=1020
 window/stretch/scale=1.46
 
 [file_customization]

@@ -249,7 +249,6 @@ script = ExtResource("1_g2els")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364601227]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1012192069]
-position = Vector2(-54, 26)
 sprite_frames = SubResource("SpriteFrames_a8ls1")
 animation = &"back_walk"
 frame_progress = 0.7688471
