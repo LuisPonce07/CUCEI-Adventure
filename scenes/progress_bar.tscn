@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bacxr2eeqkw8k"]
+
+[ext_resource type="Script" uid="uid://dy1tu8lgsmk14" path="res://scripts/progress_bar.gd" id="1_vt3ux"]
+
+[node name="Progress" type="Control" unique_id=1810548525]
+layout_mode = 3
+anchor_right = 0.5
+anchor_bottom = 0.21450618
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt3ux")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="." unique_id=1089363277]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 3.6834533
+anchor_right = 1.7413194
+anchor_bottom = 4.244604
+theme_override_font_sizes/font_size = 40
+text = "Cargando..."
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1285374553]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 3.2446043
+anchor_right = 1.0
+anchor_bottom = 4.244604
+metadata/_edit_use_anchors_ = true
