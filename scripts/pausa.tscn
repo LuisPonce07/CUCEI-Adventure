@@ -9,24 +9,28 @@ script = ExtResource("1_3ge1c")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1331576719]
 anchors_preset = -1
-anchor_right = 1.6666666
-anchor_bottom = 1.6666666
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -8.0
+offset_right = -6.0
+offset_bottom = -8.0
 mouse_filter = 2
 texture = ExtResource("2_dxlqn")
+expand_mode = 1
 stretch_mode = 6
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=190496318]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0802083
-anchor_top = 0.36851853
-anchor_right = 0.34110624
-anchor_bottom = 0.26951072
-offset_left = 595.0
-offset_right = 414.28918
-offset_bottom = 134.80981
-scale = Vector2(1.0649153, 9.774821)
+anchor_left = 0.38541666
+anchor_top = 0.35648146
+anchor_right = 0.58593565
+anchor_bottom = 0.6223711
+offset_right = -64.20221
+offset_bottom = -152.29646
+scale = Vector2(1.3849154, 8.614822)
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
