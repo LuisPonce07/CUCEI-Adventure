@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dpxn8meswthu8"]
+
+[ext_resource type="AudioStream" uid="uid://c1hrkyb6xeuxu" path="res://musica/Aftermath_in_Hall_B.mp3" id="1_5q377"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" unique_id=425647662]
+stream = ExtResource("1_5q377")
+autoplay = true

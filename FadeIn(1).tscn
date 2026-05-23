@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1h8yl55fmfhk"]
+
+[ext_resource type="PackedScene" uid="uid://dpxn8meswthu8" path="res://menuMusic.tscn" id="1_opoas"]
+[ext_resource type="Script" uid="uid://bra87di5jyyo8" path="res://fade_in.gd" id="1_pbv0b"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=60081723]
+script = ExtResource("1_pbv0b")
+
+[node name="AudioStreamPlayer" parent="." unique_id=425647662 instance=ExtResource("1_opoas")]
+parameters/looping = false
+script = ExtResource("1_pbv0b")

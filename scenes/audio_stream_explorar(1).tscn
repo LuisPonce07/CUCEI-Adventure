@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://fqcd6hu5jdia"]
+
+[ext_resource type="AudioStream" uid="uid://cb43e3aie6f0b" path="res://musica/The_Lab_Unravels.mp3" id="1_hjntf"]
+
+[node name="AudioStreamExplorar" type="AudioStreamPlayer" unique_id=1650767873]
+stream = ExtResource("1_hjntf")
+autoplay = true
