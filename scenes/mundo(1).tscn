@@ -116,45 +116,6 @@ id_npc = "npc_5"
 [node name="Area2D" type="Area2D" parent="NPC5" unique_id=2092125861]
 position = Vector2(10, -8)
 
-<<<<<<< HEAD
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1100107339]
-
-[node name="IntroFade" type="ColorRect" parent="CanvasLayer" unique_id=1938143844]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="IntroLabel" type="Label" parent="CanvasLayer" unique_id=1140937520]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-horizontal_alignment = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=854656206]
-stream = ExtResource("13_35q48")
-autoplay = true
-parameters/looping = true
-
-[node name="TileMap2" parent="." unique_id=1183577764 instance=ExtResource("2_35q48")]
-z_index = -1
-z_as_relative = false
-
-[node name="pausa" parent="." unique_id=1166659221 instance=ExtResource("8_kxyy5")]
-
-=======
 [node name="pausa" parent="." unique_id=1166659221 instance=ExtResource("8_kxyy5")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1100107339]
@@ -192,7 +153,6 @@ parameters/looping = true
 z_index = -1
 z_as_relative = false
 
->>>>>>> 9c34008371b5c2cecc5e32dac2aee7d0ef98c201
 [connection signal="body_entered" from="NPC2/Area2D" to="NPC2" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="NPC3/Area2D" to="NPC3" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="NPC/Area2D" to="NPC" method="_on_area_2d_body_entered"]

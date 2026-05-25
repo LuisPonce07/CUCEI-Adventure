@@ -1,0 +1,294 @@
+[gd_scene format=3 uid="uid://csj87i82mrjkm"]
+
+[ext_resource type="Script" uid="uid://dgixjqylh24v" path="res://scripts/batalla.gd" id="1_2lnbh"]
+[ext_resource type="Texture2D" uid="uid://nfuhwacjkyn8" path="res://fondos/Fondo1.jpeg" id="2_v1w3p"]
+[ext_resource type="Texture2D" uid="uid://21dqmbsljkog" path="res://LovelaceEspaldas.png" id="3_hfmru"]
+[ext_resource type="Texture2D" uid="uid://so7yo6gel520" path="res://enemigos/ViktorFrontal.png" id="4_7xlkh"]
+[ext_resource type="Texture2D" uid="uid://bnkupl64n6hdc" path="res://rayo.png" id="5_bwy2m"]
+
+[node name="Node2D" type="Node2D" unique_id=705182119]
+script = ExtResource("1_2lnbh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=27474376]
+
+[node name="MusicaBatalla" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=1359407381]
+
+[node name="Fondo" type="TextureRect" parent="CanvasLayer" unique_id=1883975794]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_v1w3p")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="UI_Barra" type="Panel" parent="CanvasLayer" unique_id=265439669]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -139.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextoBatalla" type="Label" parent="CanvasLayer/UI_Barra" unique_id=1134213935]
+layout_mode = 1
+offset_left = 22.0
+offset_top = 45.0
+offset_right = 722.0
+offset_bottom = 85.0
+text = "..."
+autowrap_mode = 1
+
+[node name="PlayerHPText" type="Label" parent="CanvasLayer/UI_Barra" unique_id=895938067]
+visible = false
+layout_mode = 0
+offset_left = 180.0
+offset_top = 22.0
+offset_right = 220.0
+offset_bottom = 45.0
+
+[node name="EnemyHPText" type="Label" parent="CanvasLayer/UI_Barra" unique_id=1781857992]
+visible = false
+layout_mode = 0
+offset_left = 765.0
+offset_top = -486.0
+offset_right = 925.0
+offset_bottom = -463.0
+
+[node name="Estados" type="HBoxContainer" parent="CanvasLayer" unique_id=399471698]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -116.0
+offset_top = -419.0
+offset_right = -76.0
+offset_bottom = -379.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1.0493103, 0.9955082)
+
+[node name="Stun" type="Label" parent="CanvasLayer/Estados" unique_id=1357665257]
+visible = false
+layout_mode = 2
+text = "STUN"
+
+[node name="Debuff" type="Label" parent="CanvasLayer/Estados" unique_id=193533970]
+visible = false
+layout_mode = 2
+text = "↓ATK"
+
+[node name="Buff" type="Label" parent="CanvasLayer/Estados" unique_id=2116230550]
+visible = false
+layout_mode = 2
+text = "↑ATK"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Estados" unique_id=1318188383]
+
+[node name="NombreJugador" type="Label" parent="CanvasLayer" unique_id=1211491098]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Enemigo" type="Sprite2D" parent="CanvasLayer" unique_id=1158491850]
+position = Vector2(860, 240)
+scale = Vector2(1.8, 1.449)
+texture = ExtResource("4_7xlkh")
+
+[node name="Jugador" type="Sprite2D" parent="CanvasLayer" unique_id=66532326]
+position = Vector2(250, 360)
+scale = Vector2(1.8, 1.705)
+texture = ExtResource("3_hfmru")
+
+[node name="LevelUpText" type="Label" parent="CanvasLayer" unique_id=686855952]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -11.5
+offset_right = 38.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LEVEL UP!"
+
+[node name="MenuCambiar" type="Panel" parent="CanvasLayer" unique_id=1842488137]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MenuCambiar" unique_id=536394622]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Btn1" type="Button" parent="CanvasLayer/MenuCambiar/VBoxContainer" unique_id=1859140]
+layout_mode = 2
+
+[node name="Btn2" type="Button" parent="CanvasLayer/MenuCambiar/VBoxContainer" unique_id=1702985493]
+layout_mode = 2
+
+[node name="Btn3" type="Button" parent="CanvasLayer/MenuCambiar/VBoxContainer" unique_id=521154697]
+layout_mode = 2
+
+[node name="Btn4" type="Button" parent="CanvasLayer/MenuCambiar/VBoxContainer" unique_id=1252345124]
+layout_mode = 2
+
+[node name="Btn5" type="Button" parent="CanvasLayer/MenuCambiar/VBoxContainer" unique_id=986023638]
+layout_mode = 2
+
+[node name="EfectoJugador" type="Sprite2D" parent="CanvasLayer" unique_id=504887567]
+visible = false
+position = Vector2(282, 310)
+scale = Vector2(0.09375, 0.076171875)
+texture = ExtResource("5_bwy2m")
+offset = Vector2(0, -80)
+
+[node name="EfectoEnemigo" type="Sprite2D" parent="CanvasLayer" unique_id=1879396437]
+visible = false
+position = Vector2(797, 213.00003)
+scale = Vector2(0.087890625, 0.080078125)
+texture = ExtResource("5_bwy2m")
+
+[node name="PanelInferior" type="Panel" parent="CanvasLayer" unique_id=1898251909]
+offset_top = 430.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ExpBar" type="ProgressBar" parent="CanvasLayer/PanelInferior" unique_id=878721516]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 77.0
+
+[node name="ExpLabel" type="Label" parent="CanvasLayer/PanelInferior" unique_id=427685106]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 65.0
+text = "EXP: 0/100"
+
+[node name="BotonAtacar" type="Button" parent="CanvasLayer/PanelInferior" unique_id=1044723746]
+layout_mode = 1
+offset_left = 820.0
+offset_top = 30.0
+offset_right = 1000.0
+offset_bottom = 80.0
+text = "Atacar"
+
+[node name="BotonCambiar" type="Button" parent="CanvasLayer/PanelInferior" unique_id=1937588072]
+layout_mode = 1
+offset_left = 820.0
+offset_top = 100.0
+offset_right = 1000.0
+offset_bottom = 150.0
+text = "Cambiar"
+
+[node name="Huir" type="Button" parent="CanvasLayer/PanelInferior" unique_id=724324307]
+layout_mode = 1
+offset_left = 1010.0
+offset_top = 100.0
+offset_right = 1130.0
+offset_bottom = 150.0
+text = "Huir"
+
+[node name="MenuAtaques" type="Panel" parent="CanvasLayer/PanelInferior" unique_id=719705941]
+custom_minimum_size = Vector2(700, 340)
+layout_mode = 0
+offset_top = -430.0
+offset_right = 700.0
+offset_bottom = -90.0
+scale = Vector2(0.91212785, 1.8329531)
+
+[node name="Ataque1" type="Button" parent="CanvasLayer/PanelInferior/MenuAtaques" unique_id=769486264]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 65.0
+size_flags_horizontal = 4
+text = "Script"
+
+[node name="Ataque2" type="Button" parent="CanvasLayer/PanelInferior/MenuAtaques" unique_id=697492265]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 20.0
+offset_right = 470.0
+offset_bottom = 65.0
+text = "Analisis de bug"
+
+[node name="Ataque3" type="Button" parent="CanvasLayer/PanelInferior/MenuAtaques" unique_id=1651732575]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 240.0
+offset_bottom = 125.0
+text = "Optimizacion"
+
+[node name="Ataque4" type="Button" parent="CanvasLayer/PanelInferior/MenuAtaques" unique_id=910061635]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 80.0
+offset_right = 470.0
+offset_bottom = 125.0
+text = "Root Access"
+
+[node name="PlayerHP" type="ProgressBar" parent="CanvasLayer/PanelInferior" unique_id=1783170211]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 280.0
+offset_bottom = 117.0
+value = 100.0
+
+[node name="PanelEnemigo" type="Panel" parent="CanvasLayer" unique_id=1484851790]
+offset_left = 700.0
+offset_top = 20.0
+offset_right = 960.0
+offset_bottom = 90.0
+
+[node name="EnemyHP" type="ProgressBar" parent="CanvasLayer/PanelEnemigo" unique_id=380649741]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 57.0
+value = 100.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=186641016]
+
+[node name="DamageText" type="Label" parent="CanvasLayer" unique_id=1279816422]
+visible = false
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+z_index = 10
+offset_left = 520.0
+offset_top = 250.0
+offset_right = 820.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/MenuCambiar/VBoxContainer/Btn1" to="." method="_on_Btn1_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuCambiar/VBoxContainer/Btn2" to="." method="_on_Btn2_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuCambiar/VBoxContainer/Btn3" to="." method="_on_Btn3_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuCambiar/VBoxContainer/Btn4" to="." method="_on_Btn4_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuCambiar/VBoxContainer/Btn5" to="." method="_on_Btn5_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/BotonAtacar" to="." method="_on_boton_atacar_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/BotonCambiar" to="." method="_on_boton_cambiar_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/Huir" to="." method="_on_huir_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/MenuAtaques/Ataque1" to="." method="_on_ataque_1_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/MenuAtaques/Ataque2" to="." method="_on_ataque_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/MenuAtaques/Ataque3" to="." method="_on_ataque_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/PanelInferior/MenuAtaques/Ataque4" to="." method="_on_ataque_4_pressed"]

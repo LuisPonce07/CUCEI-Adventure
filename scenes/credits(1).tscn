@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://3fvld8l6x7nu"]
+
+[ext_resource type="Texture2D" uid="uid://chhixbdvud0xn" path="res://musica/Nueva partida (1).png" id="1_0bpdh"]
+[ext_resource type="Script" uid="uid://dmarg0b6ldqtr" path="res://scenes/credits.gd" id="1_0ctdu"]
+[ext_resource type="Texture2D" uid="uid://befjsmihbsp46" path="res://arte/back.png" id="3_2fbfq"]
+[ext_resource type="PackedScene" uid="uid://dpxn8meswthu8" path="res://menuMusic.tscn" id="4_2fbfq"]
+
+[node name="Control" type="Control" unique_id=1238990975]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+script = ExtResource("1_0ctdu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1286898926]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1_0bpdh")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=1651280075]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 169.0
+offset_right = 808.0
+offset_bottom = 425.0
+text = "Miembros del equipo:
+MARIA ELENA AISHA GARCIA RODRIGUEZ
+ALEJANDRA ESTEFANIA MAGADAN ANGEL
+JULIAN LOPEZ RAMIREZ
+MIGUEL ANGEL GUADARRAMA SANDOBAL
+LUIS CARLOS PONCE MARTINEZ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1869826743]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.7042683
+anchor_right = 0.6215131
+anchor_bottom = 1.9906474
+scale = Vector2(0.28219244, 0.19346663)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1001309680]
+layout_mode = 2
+
+[node name="back" type="Button" parent="CenterContainer/VBoxContainer" unique_id=60162090]
+layout_mode = 2
+icon = ExtResource("3_2fbfq")
+
+[node name="AudioStreamPlayer" parent="." unique_id=425647662 instance=ExtResource("4_2fbfq")]
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/back" to="." method="_on_button_pressed"]

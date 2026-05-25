@@ -1,5 +1,6 @@
 extends Control
 
+<<<<<<< HEAD
 const RUTA_GUARDADO = "user://partida.json"
 
 func _ready():
@@ -17,6 +18,10 @@ func _on_load_pressed() -> void:
 		Global.ir_a_escena("res://scenes/mundo.tscn")
 	else:
 		print("No hay partida guardada")
+=======
+func _on_play_pressed():
+	Global.ir_a_escena("res://scenes/mundo.tscn")
+>>>>>>> 9c34008371b5c2cecc5e32dac2aee7d0ef98c201
 
 
 func _on_credits_pressed() -> void:

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://mhf5xbwp6rdm"]
+
+[ext_resource type="PackedScene" uid="uid://fqcd6hu5jdia" path="res://scenes/audio_stream_explorar.tscn" id="2_kxpf7"]
+
+[sub_resource type="GDScript" id="GDScript_csd56"]
+script/source = "extends Control
+
+@onready var musica_fondo = $AudioStreamExplorar
+
+func _ready():
+	if not musica_fondo.playing:
+		musica_fondo.play()
+"
+
+[sub_resource type="GDScript" id="GDScript_uv2kg"]
+script/source = "extends Control
+
+@onready var musica_fondo = $AudioStreamExplorar
+
+func _ready():
+	if not musica_fondo.playing:
+		musica_fondo.play()
+"
+
+[node name="explorarMusica" type="AnimationPlayer" unique_id=1212592414]
+script = SubResource("GDScript_csd56")
+
+[node name="AudioStreamExplorar" parent="." unique_id=1650767873 instance=ExtResource("2_kxpf7")]
+script = SubResource("GDScript_uv2kg")

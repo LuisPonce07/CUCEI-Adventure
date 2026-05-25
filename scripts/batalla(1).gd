@@ -1,6 +1,5 @@
 extends Node2D
 
-const RUTA_GUARDADO = "user://partida.json"
 # ================= UI =================
 @onready var player_bar = get_node("CanvasLayer/PanelInferior/PlayerHP")
 @onready var enemy_bar = get_node("CanvasLayer/PanelEnemigo/EnemyHP")
@@ -288,10 +287,6 @@ func usar_habilidad(index):
 			Global.npcs_derrotados.append(Global.npc_actual)
 		
 		Global.puede_pelear = true
-<<<<<<< HEAD
-		guardar_partida()
-=======
->>>>>>> 9c34008371b5c2cecc5e32dac2aee7d0ef98c201
 		get_tree().change_scene_to_file("res://scenes/mundo.tscn")
 
 	turno_activo = true
@@ -708,30 +703,3 @@ func actualizar_hp_ui():
 	player_hp_text.text = str(player_hp) + " / " + str(player_bar.max_value)
 
 	enemy_hp_text.text = str(enemy_hp) + " / " + str(enemy_bar.max_value)
-<<<<<<< HEAD
-
-func guardar_partida():
-	var datos = {
-		"nivel": Global.nivel,
-		"experiencia": Global.experiencia,
-		"exp_max": Global.exp_max,
-		"equipo": Global.equipo,
-		"personajes_desbloqueados": Global.personajes_desbloqueados,
-		"npcs_derrotados": Global.npcs_derrotados,
-		"puede_pelear": Global.puede_pelear,
-		"base_personajes": Global.base_personajes
-	}
-
-	var json = JSON.stringify(datos, "\t")
-	var archivo = FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
-
-	if archivo == null:
-		print("ERROR: no se pudo guardar la partida")
-		return
-
-	archivo.store_string(json)
-	archivo.close()
-
-	print("Partida guardada correctamente")
-=======
->>>>>>> 9c34008371b5c2cecc5e32dac2aee7d0ef98c201
