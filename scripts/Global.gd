@@ -44,6 +44,7 @@ var base_personajes = {
 		"spd": 12,
 		"atk": 22,
 		"sprite": "res://VoltEspaldas.png",
+		"musica": "res://musica/Serrated_Edge.mp3",
 		"habilidades": [
 			{"nombre": "Voltaje de Prueba", "tipo": "daño", "mult": 1.0},
 			{"nombre": "Pulso Eléctrico", "tipo": "stun", "mult": 0.7},
@@ -58,6 +59,7 @@ var base_personajes = {
 		"spd": 8,
 		"atk": 16,
 		"sprite": "res://EdiEspaldas.png",
+		"musica": "res://musica/Beneath_The_Chemistry_Wing.mp3",
 		"habilidades": [
 			{"nombre": "Impacto de Mazo", "tipo": "daño", "mult": 1.0},
 			{"nombre": "Cimentación Reforzada", "tipo": "defensa"},
@@ -72,6 +74,7 @@ var base_personajes = {
 		"spd": 14,
 		"atk": 25,
 		"sprite": "res://ViktorEspaldas.png",
+		"musica": "res://musica/Steel_Rain.mp3",
 		"habilidades": [
 			{"nombre": "Golpe", "tipo": "daño", "mult": 1.0},
 			{"nombre": "Corrosivo", "tipo": "daño", "mult": 1.8},
@@ -86,6 +89,7 @@ var base_personajes = {
 		"spd": 11,
 		"atk": 18,
 		"sprite": "res://LeoEspaldas.png",
+		"musica": "res//musica/The_Lab_Unravels.mp3",
 		"habilidades": [
 			{"nombre": "Reacción Ácida", "tipo": "daño", "mult": 1.0},
 			{"nombre": "Suero Restaurador", "tipo": "heal", "mult": 0.3},

@@ -68,3 +68,7 @@ func restaurar_posicion():
 		
 		await get_tree().create_timer(0.5).timeout
 		Global.puede_pelear = true
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

@@ -1,25 +1,33 @@
 extends Node2D
 
+const RUTA_GUARDADO = "user://partida.json"
 # ================= UI =================
-@onready var player_bar = get_node("CanvasLayer/UI_Barra/PlayerHP")
-@onready var enemy_bar = get_node("CanvasLayer/UI_Barra/EnemyHP")
+@onready var player_bar = get_node("CanvasLayer/PanelInferior/PlayerHP")
+@onready var enemy_bar = get_node("CanvasLayer/PanelEnemigo/EnemyHP")
+
 @onready var menu_principal = get_node("CanvasLayer/UI_Barra")
-@onready var menu_ataques = get_node("CanvasLayer/MenuAtaques")
+@onready var menu_ataques = get_node("CanvasLayer/PanelInferior/MenuAtaques")
+
 @onready var texto_batalla = get_node("CanvasLayer/UI_Barra/TextoBatalla")
 
-@onready var atk1 = get_node("CanvasLayer/MenuAtaques/GridContainer/Ataque1")
-@onready var atk2 = get_node("CanvasLayer/MenuAtaques/GridContainer/Ataque2")
-@onready var atk3 = get_node("CanvasLayer/MenuAtaques/GridContainer/Ataque3")
-@onready var atk4 = get_node("CanvasLayer/MenuAtaques/GridContainer/Ataque4")
+@onready var atk1 = get_node("CanvasLayer/PanelInferior/MenuAtaques/Ataque1")
+@onready var atk2 = get_node("CanvasLayer/PanelInferior/MenuAtaques/Ataque2")
+@onready var atk3 = get_node("CanvasLayer/PanelInferior/MenuAtaques/Ataque3")
+@onready var atk4 = get_node("CanvasLayer/PanelInferior/MenuAtaques/Ataque4")
 
 @onready var jugador_sprite = get_node("CanvasLayer/Jugador")
 @onready var enemigo_sprite = get_node("CanvasLayer/Enemigo")
 @onready var fondo = get_node("CanvasLayer/Fondo")
 
-@onready var exp_bar = get_node("CanvasLayer/UI_Barra/ExpBar")
-@onready var exp_label = get_node("CanvasLayer/UI_Barra/ExpLabel")
+# ================= MUSICA =================
+@onready var musica_batalla = get_node("CanvasLayer/MusicaBatalla")
+
+# ================= EXP =================
+@onready var exp_bar = get_node("CanvasLayer/PanelInferior/ExpBar")
+@onready var exp_label = get_node("CanvasLayer/PanelInferior/ExpLabel")
 @onready var levelup_text = get_node("CanvasLayer/LevelUpText")
 
+# ================= CAMBIO =================
 @onready var menu_cambiar = get_node("CanvasLayer/MenuCambiar")
 
 @onready var btn1 = get_node("CanvasLayer/MenuCambiar/VBoxContainer/Btn1")
@@ -28,8 +36,11 @@ extends Node2D
 @onready var btn4 = get_node("CanvasLayer/MenuCambiar/VBoxContainer/Btn4")
 @onready var btn5 = get_node("CanvasLayer/MenuCambiar/VBoxContainer/Btn5")
 
+# ================= EFECTOS =================
 @onready var efecto_jugador = get_node("CanvasLayer/EfectoJugador")
 @onready var efecto_enemigo = get_node("CanvasLayer/EfectoEnemigo")
+@onready var player_hp_text = get_node("CanvasLayer/UI_Barra/PlayerHPText")
+@onready var enemy_hp_text = get_node("CanvasLayer/UI_Barra/EnemyHPText")
 
 var botones_cambio = []
 
@@ -57,66 +68,139 @@ var stun_player = false
 
 # ================= READY =================
 func _ready():
+	
+	print(Global.enemigo_actual)
+	musica_batalla.volume_db = 0
+	musica_batalla.play()
+
 	personajes.clear()
 
 	for nombre in Global.equipo:
 		if Global.base_personajes.has(nombre):
 			personajes.append(Global.base_personajes[nombre])
-			
+
 	if personajes.size() == 0:
 		push_error("No hay personajes en el equipo")
 		return
-
+	
+	personaje_actual = 0
 	var p = personajes[personaje_actual]
 
-	player_hp = p.get("hp_actual", p["hp"])
+	player_hp = p["hp"]
+	p["hp_actual"] = p["hp"]
 	player_atk = p["atk"]
 	habilidades = p["habilidades"]
-	
+
+	player_bar.max_value = p["hp"]
 	player_bar.value = player_hp
+	actualizar_hp_ui()
 
 	menu_principal.visible = true
 	menu_ataques.visible = false
 
 	actualizar_menu()
 
+	# ================= ENEMIGO =================
 	if Global.enemigo_actual != {}:
 
+		# HP
 		enemy_hp = Global.enemigo_actual.get("hp", 100)
+		enemy_bar.max_value = enemy_hp
 		enemy_bar.value = enemy_hp
+		
+		actualizar_hp_ui()
 
-		# SPRITE ENEMIGO
+		# ================= SPRITE =================
 		if Global.enemigo_actual.has("sprite"):
-			var tex = load(Global.enemigo_actual["sprite"])
-			if tex:
-				enemigo_sprite.texture = tex
 
-		# FONDO
+			var ruta_sprite = Global.enemigo_actual["sprite"]
+
+			if ResourceLoader.exists(ruta_sprite):
+
+				var tex = load(ruta_sprite)
+
+				if tex:
+					enemigo_sprite.texture = tex
+
+			else:
+				print("SPRITE NO ENCONTRADO: ", ruta_sprite)
+
+		# ================= MUSICA =================
+		if Global.enemigo_actual.has("musica"):
+
+			var ruta_musica = str(Global.enemigo_actual["musica"])
+
+			print("RUTA RECIBIDA:")
+			print(ruta_musica)
+
+			if ResourceLoader.exists(ruta_musica):
+
+				print("LA MUSICA EXISTE")
+
+				var musica = load(ruta_musica)
+
+				if musica:
+
+					print("MUSICA CARGADA")
+
+					musica_batalla.stop()
+					musica_batalla.stream = musica
+					musica_batalla.play()
+
+					print("REPRODUCIENDO")
+
+				else:
+					print("ERROR AL CARGAR AUDIO")
+
+			else:
+				print("NO EXISTE EL ARCHIVO")
+
+		# ================= FONDO =================
 		if Global.enemigo_actual.has("fondo"):
-			var texf = load(Global.enemigo_actual["fondo"])
-			if texf:
-				fondo.texture = texf
 
-		# HABILIDADES
+			var ruta_fondo = Global.enemigo_actual["fondo"]
+
+			if ResourceLoader.exists(ruta_fondo):
+
+				var texf = load(ruta_fondo)
+
+				if texf:
+					fondo.texture = texf
+
+			else:
+				print("FONDO NO ENCONTRADO: ", ruta_fondo)
+
+		# ================= HABILIDADES =================
 		if Global.enemigo_actual.has("habilidades"):
 			enemigo_habilidades = Global.enemigo_actual["habilidades"]
 
-		mostrar_texto("¡Un " + Global.enemigo_actual.get("nombre","Enemigo") + " apareció!")
-		
+		# ================= TEXTO =================
+		mostrar_texto(
+			"¡Un " + Global.enemigo_actual.get("nombre", "Enemigo") + " apareció!"
+		)
+
+		# ================= EXP =================
 		configurar_barra_exp()
 		actualizar_exp_ui()
-		
+
+		# ================= MENU CAMBIO =================
 		botones_cambio = [btn1, btn2, btn3, btn4, btn5]
+
 		menu_cambiar.visible = false
 
 		actualizar_menu_cambio()
-		
-		if p.has("sprite"):
-			var tex = load(p["sprite"])
-			if tex:
-				jugador_sprite.texture = tex
-	
 
+		# ================= SPRITE PLAYER =================
+		if p.has("sprite"):
+
+			var ruta_player = p["sprite"]
+
+			if ResourceLoader.exists(ruta_player):
+
+				var tex_player = load(ruta_player)
+
+				if tex_player:
+					jugador_sprite.texture = tex_player
 # ================= MENU =================
 func actualizar_menu():
 	atk1.text = habilidades[0]["nombre"]
@@ -152,6 +236,8 @@ func usar_habilidad(index):
 		"daño":
 			await animar_ataque(jugador_sprite, 1)
 			var dmg = int(player_atk * mult)
+			print("DAÑO:", dmg)
+			print("HP ENEMIGO:", enemy_hp)
 			enemy_hp -= dmg
 			enemy_bar.value = enemy_hp
 			await mostrar_texto("Usaste " + h["nombre"])
@@ -179,7 +265,8 @@ func usar_habilidad(index):
 		Global.check_level_up()
 		
 		await animar_exp(50)
-		
+		if musica_batalla.stream:
+			musica_batalla.stream.loop = true
 		var nombre = Global.enemigo_actual.get("nombre", "")
 
 		if nombre != "":
@@ -199,8 +286,10 @@ func usar_habilidad(index):
 
 		if Global.npc_actual not in Global.npcs_derrotados:
 			Global.npcs_derrotados.append(Global.npc_actual)
-
-		get_tree().change_scene_to_file("res://scenes/mundo.scn")
+		
+		Global.puede_pelear = true
+		guardar_partida()
+		get_tree().change_scene_to_file("res://scenes/mundo.tscn")
 
 	turno_activo = true
 
@@ -240,8 +329,6 @@ func enemy_turn():
 			player_hp -= dmg
 			player_bar.value = player_hp
 
-			personajes[personaje_actual]["hp_actual"] = player_hp
-
 			await mostrar_texto("El enemigo usó " + h.get("nombre","Ataque"))
 			
 			await animar_golpe(jugador_sprite)
@@ -257,7 +344,7 @@ func enemy_turn():
 			player_hp -= dmg
 			player_bar.value = player_hp
 
-			personajes[personaje_actual]["hp_actual"] = player_hp
+		
 
 			stun_player = true
 			await efecto_stun(efecto_jugador)
@@ -472,7 +559,7 @@ func cambiar_a_personaje(index):
 	if index >= personajes.size():
 		return
 		
-	personajes[personaje_actual]["hp_actual"] = player_hp
+	
 
 	var p = personajes[index]
 
@@ -480,7 +567,8 @@ func cambiar_a_personaje(index):
 	player_hp = p.get("hp_actual", p["hp"])
 	player_atk = p["atk"]
 	habilidades = p["habilidades"]
-
+	
+	player_bar.max_value = p["hp"]
 	player_bar.value = player_hp
 	actualizar_menu()
 	
@@ -546,7 +634,7 @@ func cambiar_personaje_auto():
 			return
 
 	await mostrar_texto("TODOS TUS PERSONAJES CAYERON")
-	get_tree().change_scene_to_file("res://scenes/mundo.scn")
+	get_tree().change_scene_to_file("res://scenes/mundo.tscn")
 	
 func animar_danio(sprite):
 	sprite.modulate = Color(1, 0.3, 0.3) # rojo
@@ -611,3 +699,33 @@ func decidir_turno():
 		return "enemigo"
 	else:
 		return "jugador"
+
+func actualizar_hp_ui():
+
+	player_hp_text.text = str(player_hp) + " / " + str(player_bar.max_value)
+
+	enemy_hp_text.text = str(enemy_hp) + " / " + str(enemy_bar.max_value)
+
+func guardar_partida():
+	var datos = {
+		"nivel": Global.nivel,
+		"experiencia": Global.experiencia,
+		"exp_max": Global.exp_max,
+		"equipo": Global.equipo,
+		"personajes_desbloqueados": Global.personajes_desbloqueados,
+		"npcs_derrotados": Global.npcs_derrotados,
+		"puede_pelear": Global.puede_pelear,
+		"base_personajes": Global.base_personajes
+	}
+
+	var json = JSON.stringify(datos, "\t")
+	var archivo = FileAccess.open(RUTA_GUARDADO, FileAccess.WRITE)
+
+	if archivo == null:
+		print("ERROR: no se pudo guardar la partida")
+		return
+
+	archivo.store_string(json)
+	archivo.close()
+
+	print("Partida guardada correctamente")

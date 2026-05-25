@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://o6ah2up257xk" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://c5tsmfofkdx2s" path="res://arte/characters/lovelace.png" id="2_qhqgy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(11, 6)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_qhqgy")
 region = Rect2(0, 0, 64, 64)
@@ -247,8 +250,11 @@ position = Vector2(86, 70)
 script = ExtResource("1_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364601227]
+position = Vector2(1.5, 34)
+shape = SubResource("RectangleShape2D_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1012192069]
+position = Vector2(1, 6)
 sprite_frames = SubResource("SpriteFrames_a8ls1")
 animation = &"back_walk"
 frame_progress = 0.7688471
